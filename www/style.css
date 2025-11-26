@@ -288,6 +288,25 @@
   .btn-secondary:hover {
     background-color: #e0e0e0;
   }
+  .category-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.category-btn:hover {
+  background: #e0e0e0;
+}
+
+.category-btn.active {
+  background: #007bff;
+  color: white;
+}
   
   /* Responsive */
   @media (max-width: 1024px) {
