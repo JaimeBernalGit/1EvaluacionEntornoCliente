@@ -98,6 +98,10 @@ function deleteCategory(id) {
     method: "DELETE"
     })
     .then(() => {
+      Swal.fire({
+      title: "Categoría borrada",
+      icon: "success"
+    });
       fetch("http://localhost:3000/categories")
         .then(res => res.json())
         .then(data => drawData(data));
@@ -108,10 +112,6 @@ function deleteCategory(id) {
         icon: "error",
         title: "Error al borrar la categoría",
       });
-    });
-    Swal.fire({
-      title: "Categoría borrada",
-      icon: "success"
     });
   }
 });
@@ -162,9 +162,48 @@ function drawSites(sites) {
   btnDelete.classList.add('btn-icon');
   btnDelete.title = 'Eliminar';
   btnDelete.innerHTML = '🗑️';
+  btnDelete.onclick = () => {
+      deleteSite(site.id);
+  };
   tdActions.appendChild(btnDelete);
   tr.appendChild(tdActions);
     
   tbody.appendChild(tr);
+  });
+}
+
+//borrar Site
+
+function deleteSite(siteId) {
+  Swal.fire({
+    title: "¿Estás seguro de querer borrar este sitio?",
+    text: "Este cambio no se puede revertir",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "red",
+    confirmButtonText: "Borrar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch("http://localhost:3000/sites/" + siteId, {
+        method: 'DELETE'
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Sitio borrado",
+          icon: "success"
+        });
+        let activeCategory = document.querySelector('.category-btn.active');
+        if (activeCategory) {
+          activeCategory.click();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Error al borrar el sitio",
+        });
+      });
+    }
   });
 }
