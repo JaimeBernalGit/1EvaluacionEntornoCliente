@@ -13,8 +13,8 @@
     <header class="header">
       <h1>Pass saver</h1>
       <div class="header-actions">
-        <button class="btn-tab active">Add category</button>
-        <button class="btn-tab">Add site</button>
+        <button class="btn-tab active">Añadir categoría</button>
+        <button class="btn-tab">Añadir sitio</button>
       </div>
     </header>
 
@@ -22,7 +22,7 @@
     <div class="main-content">
       <!-- Sidebar izquierdo - Categorías -->
       <aside class="sidebar">
-        <h2>Categories</h2>
+        <h2>Categorías</h2>
         <ul class="categories-list">
 
         </ul>
@@ -33,14 +33,14 @@
         <table class="sites-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>User</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th>Nombre</th>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="tabla">
-            
+
           </tbody>
         </table>
       </section>
@@ -56,7 +56,7 @@
         <label for="categoryName">Nombre</label>
         <input type="text" id="categoryName" placeholder="Line 1">
         <div class="modal-buttons">
-          <button type="button" class="btn-secondary">Cancel</button>
+          <button type="button" class="btn-secondary">Cancelar</button>
           <button type="submit" class="btn-primary">OK</button>
         </div>
       </form>
@@ -69,24 +69,28 @@
       <h3>Pass saver</h3>
       <form>
         <div class="form-group">
+          <label for="siteName">Nombre</label>
+          <input type="text" id="siteName" placeholder="Nombre">
+        </div>
+        <div class="form-group">
           <label for="siteUrl">URL</label>
           <input type="url" id="siteUrl" placeholder="http://facebook.com">
         </div>
         <div class="form-group">
-          <label for="siteUser">User</label>
-          <input type="text" id="siteUser" placeholder="Greeting">
+          <label for="siteUser">Usuario</label>
+          <input type="text" id="siteUser" placeholder="User">
         </div>
         <div class="form-group">
-          <label for="sitePassword">Password</label>
+          <label for="sitePassword">Contraseña</label>
           <input type="password" id="sitePassword" placeholder="********">
         </div>
         <div class="form-group">
-          <label for="siteDescription">Description</label>
+          <label for="siteDescription">Descripción</label>
           <textarea id="siteDescription" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
         </div>
         <div class="modal-buttons">
-          <button type="button" class="btn-secondary">Cancel</button>
-          <button type="submit" class="btn-primary">Save</button>
+          <button type="button" class="btn-secondary">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
         </div>
       </form>
     </div>
