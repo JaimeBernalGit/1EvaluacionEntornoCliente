@@ -307,6 +307,19 @@
   background: #007bff;
   color: white;
 }
+.delete-btn {
+  padding: 10px;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}
   
   /* Responsive */
   @media (max-width: 1024px) {
