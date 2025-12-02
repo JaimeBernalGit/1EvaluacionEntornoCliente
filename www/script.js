@@ -147,26 +147,26 @@ function drawSites(sites) {
     return
   }
   sites.forEach(site => {
-  let tr = document.createElement('tr')
+  let tr = document.createElement("tr")
 
-  let tdName = document.createElement('td')
+  let tdName = document.createElement("td")
   tdName.innerText = site.name
   tr.appendChild(tdName)
 
-  let tdUser = document.createElement('td')
+  let tdUser = document.createElement("td")
   tdUser.innerText = site.user
   tr.appendChild(tdUser)
 
-  let tdDate = document.createElement('td')
-  tdDate.innerText = new Date().toLocaleDateString('es-ES')
+  let tdDate = document.createElement("td")
+  tdDate.innerText = new Date().toLocaleDateString("es-ES")
   tr.appendChild(tdDate)
 
-  let tdActions = document.createElement('td')
-  tdActions.classList.add('actions')
-  let btnDelete = document.createElement('button')
-  btnDelete.classList.add('btn-icon')
-  btnDelete.title = 'Eliminar'
-  btnDelete.innerHTML = '🗑️'
+  let tdActions = document.createElement("td")
+  tdActions.classList.add("actions")
+  let btnDelete = document.createElement("button")
+  btnDelete.classList.add("btn-icon")
+  btnDelete.title = "Eliminar"
+  btnDelete.innerHTML = "🗑️"
   btnDelete.onclick = () => {
       deleteSite(site.id)
   }
@@ -257,7 +257,7 @@ boton_site_ok.addEventListener("click", (e) => {
     modal_site.querySelector("#siteUser").value = ""
     modal_site.querySelector("#sitePassword").value = ""
     modal_site.querySelector("#siteDescription").value = ""
-    let activeCategory = document.querySelector('.category-btn.active')
+    let activeCategory = document.querySelector(".category-btn.active")
     if (activeCategory) {
     activeCategory.click()
     }
@@ -288,20 +288,20 @@ function deleteSite(siteId) {
   }).then((result) => {
     if (result.isConfirmed) {
       fetch("http://localhost:3000/sites/" + siteId, {
-        method: 'DELETE'
+        method: "DELETE"
       })
       .then(() => {
         Swal.fire({
           title: "Sitio borrado",
           icon: "success"
         })
-        let activeCategory = document.querySelector('.category-btn.active')
+        let activeCategory = document.querySelector(".category-btn.active")
         if (activeCategory) {
           activeCategory.click()
         }
       })
       .catch(error => {
-        console.error('Error:', error)
+        console.error("Error:", error)
         Swal.fire({
           icon: "error",
           title: "Error al borrar el sitio",
@@ -310,3 +310,36 @@ function deleteSite(siteId) {
     }
   })
 }
+
+// Generar contraseña segura
+function generateSecurePassword(length = 12) {
+  const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowercase = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+  const allChars = uppercase + lowercase + numbers + symbols;
+  let password = "";
+
+  password += uppercase[Math.floor(Math.random() * uppercase.length)];
+  password += lowercase[Math.floor(Math.random() * lowercase.length)];
+  password += numbers[Math.floor(Math.random() * numbers.length)];
+  password += symbols[Math.floor(Math.random() * symbols.length)];
+  
+  for (let i = password.length; i < length; i++) {
+    password += allChars[Math.floor(Math.random() * allChars.length)];
+  }
+  return password;
+}
+
+const btnGeneratePassword = modal_site.querySelector(".btn-generate");
+btnGeneratePassword.addEventListener("click", () => {
+  const passwordInput = modal_site.querySelector("#sitePassword");
+  const newPassword = generateSecurePassword(12); 
+  passwordInput.value = newPassword;
+  Swal.fire({
+    title: "Contraseña generada",
+    html: `<strong>${newPassword}</strong>`,
+    icon: "success",
+    showConfirmButton: false
+  });
+});
